@@ -1,11 +1,21 @@
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
-export const Item = ({ dataItem, handleSingleSelection, selected }) => {
+export const Item = ({
+  dataItem,
+  handleSingleSelection,
+  handleMultipleSelection,
+  enableMultiSelection,
+  selected,
+}) => {
   return (
     <div
       className='item cursor-pointer border bg-[#1a1a1a] border-[#999999] flex justify-between items-center p-4 rounded'
       key={dataItem.id}
-      onClick={() => handleSingleSelection(dataItem.id)}
+      onClick={
+        enableMultiSelection
+          ? () => handleMultipleSelection(dataItem.id)
+          : () => handleSingleSelection(dataItem.id)
+      }
     >
       <div className='title text-[#FFF] font-semibold text-lg'>
         {dataItem.question}
